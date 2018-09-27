@@ -12,6 +12,8 @@
     <modules>
         <module>zk-prepare</module>
         <module>zk-install</module>
+        <module>zk-datatype</module>
+        <module>zk-command</module>
     </modules>
 
     <dependencies>
