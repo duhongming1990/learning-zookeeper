@@ -1,6 +1,6 @@
 # zk-datatype
 
-## 3 zk基本数据类型
+## 3 ZooKeeper基本数据模型
 [返回主目录](../README.md)
 
 ### 3.1 zookeeper基本数据模型介绍

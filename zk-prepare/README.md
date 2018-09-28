@@ -1,6 +1,6 @@
 # zk-prepare
 
-## 1 课程准备
+## 1 分布式系统概念与ZooKeeper简介
 [返回主目录](../README.md)
 
 ### 1.1 zookeeper简介

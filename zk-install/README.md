@@ -1,6 +1,6 @@
 # zk-install
 
-## 2 zk安装
+## 2  ZooKeeper安装
 [返回主目录](../README.md)
 
 ### 2.1 zookeeper文件夹主要目录介绍
