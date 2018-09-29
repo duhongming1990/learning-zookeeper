@@ -14,6 +14,7 @@
         <module>zk-install</module>
         <module>zk-datatype</module>
         <module>zk-command</module>
+        <module>zk-cluster</module>
     </modules>
 
     <dependencies>
