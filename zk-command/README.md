@@ -52,3 +52,51 @@
 #### 4.2.3 watcher使用场景
     统一资源配置
     
+### 4.3 zk特性-acl（access control lists权限控制）
+
+### 4.3.1 ACL命令
+    getAcl获取某个节点的acl权限信息
+    setAcl设置某个节点的acl权限信息
+    addauth输入认证授权信息
+        addauth [digest] username:password
+### 4.3.2 ACL的构成
+    [scheme:id:permissions]来构成权限列表
+    
+    scheme：代表采用的某种权限机制；
+        world:anyone:[permissions]
+        auth:user:password:[permissions]
+        digest:username:BASE64(SHA1(password)):[permissions]
+        ip:ip address:[permissions]
+        super 代表超级管理员
+            "-Dzookeeper.DigestAuthenticationProvider.superDigest=super:xQJmxLMiHGwaqBvst5y6rkB6HQs="
+            通过addauth digest super:admin登录
+            
+            
+    id：代表允许访问的用户
+    
+    permissions：权限组合字符串；
+        crdwa：
+            CREATE创建子节点、
+            READ获取节点/子节点、
+            WRITE设置节点数据、
+            DELETE删除子节点、
+            ADMIN设置权限
+### 4.3.3 ACL的常用使用场景
+    开发、测试环境分离，开发者无权操作测试库的节点，只能看。
+    生产环境控制指定ip服务可以访问相关节点，防止混乱。
+
+### 4.4 四字命令Four Letter Words
+    echo [command] | nc [host] [port]
+    
+    zk的状态信息：echo stat | nc 127.0.0.1 2181
+    zk是否启动：echo ruok | nc 127.0.0.1 2181
+    列举出临时会话和临时节点：echo dump | nc 127.0.0.1 2181
+    配置信息：echo conf | nc 127.0.0.1 2181
+    连接信息：echo cons | nc 127.0.0.1 2181
+    环境信息：echo envi | nc 127.0.0.1 2181
+    健康信息：echo mntr | nc 127.0.0.1 2181
+    watcher信息：echo wchs | nc 127.0.0.1 2181
+
+    需要在zoo.cfg中配置:4lw.commands.whitelist=*
+    session和watcher信息：echo wchc | nc 127.0.0.1 2181
+    path和watcher信息：echo wchp | nc 127.0.0.1 2181    
