@@ -15,6 +15,7 @@
         <module>zk-datatype</module>
         <module>zk-command</module>
         <module>zk-cluster</module>
+        <module>zk-client</module>
     </modules>
 
     <dependencies>
