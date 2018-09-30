@@ -1,24 +1,65 @@
 package com.dhm.client.demo.connection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
+ * @author 杜洪明
  * @Title: ZKConnectDemo.java
  * @Package com.imooc.zk.demo
  * @Description: zookeeper 连接demo演示
  */
+@Slf4j
 public class ZKConnect implements Watcher {
-		
-	final static Logger log = LoggerFactory.getLogger(ZKConnect.class);
 
 	public static final String connectString = "localhost:2181";
 //	public static final String connectString = "192.168.1.111:2181,192.168.1.111:2182,192.168.1.111:2183";
 	public static final Integer timeout = 5000;
-	
+
+	public ZooKeeper zookeeper = null;
+
+	public ZKConnect(){}
+	public ZKConnect(String connectString){
+		try {
+			zookeeper = new ZooKeeper(connectString, timeout, new ZKConnect());
+		} catch (IOException e) {
+			e.printStackTrace();
+			if (zookeeper != null) {
+				try {
+					zookeeper.close();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
+	public ZKConnect(String connectString,Watcher watcher){
+		try {
+			zookeeper = new ZooKeeper(connectString, timeout, watcher);
+		} catch (IOException e) {
+			e.printStackTrace();
+			if (zookeeper != null) {
+				try {
+					zookeeper.close();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public ZooKeeper getZookeeper() {
+		return zookeeper;
+	}
+
+	public void setZookeeper(ZooKeeper zookeeper) {
+		this.zookeeper = zookeeper;
+	}
+
 	public static void main(String[] args) throws Exception {
 		/**
 		 * 客户端和zk服务端链接是一个异步的过程

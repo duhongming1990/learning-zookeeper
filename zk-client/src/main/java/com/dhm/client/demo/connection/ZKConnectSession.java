@@ -1,5 +1,6 @@
 package com.dhm.client.demo.connection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
@@ -8,23 +9,24 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
+ * @author 杜洪明
  * @Title: ZKConnectDemo.java
  * @Description: zookeeper 恢复之前的会话连接demo演示
  */
-public class ZKConnectSessionWatcher implements Watcher {
-	
-	final static Logger log = LoggerFactory.getLogger(ZKConnectSessionWatcher.class);
+@Slf4j
+public class ZKConnectSession implements Watcher {
 
 	public static final String connectString = "localhost:2181";
 	public static final Integer timeout = 5000;
 	
 	public static void main(String[] args) throws Exception {
 		
-		ZooKeeper zk = new ZooKeeper(connectString, timeout, new ZKConnectSessionWatcher());
+		ZooKeeper zk = new ZooKeeper(connectString, timeout, new ZKConnectSession());
 		
 		long sessionId = zk.getSessionId();
 		String ssid = "0x" + Long.toHexString(sessionId);
-		System.out.println(ssid);
+		log.info("sessionId:{}",ssid);
+
 		byte[] sessionPassword = zk.getSessionPasswd();
 		
 		log.warn("客户端开始连接zookeeper服务器...");
@@ -39,7 +41,7 @@ public class ZKConnectSessionWatcher implements Watcher {
 		
 		ZooKeeper zkSession = new ZooKeeper(connectString,
 											timeout, 
-											new ZKConnectSessionWatcher(), 
+											new ZKConnectSession(),
 											sessionId, 
 											sessionPassword);
 		log.warn("重新连接状态zkSession：{}", zkSession.getState());
