@@ -15,7 +15,7 @@ import org.apache.curator.retry.RetryNTimes;
 public class CuratorOperator {
 
 	public CuratorFramework client = null;
-	public static final String zkServerPath = "192.168.1.110:2181";
+	public static final String zkServerPath = "localhost:2181";
 
 	/**
 	 * 实例化zk客户端
