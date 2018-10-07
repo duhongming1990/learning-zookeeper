@@ -48,9 +48,9 @@
 
 ### 8.3.3 启动方式
 
-#### 1. tomcat方式（略）
+#### 1. Tomcat容器内启动（略）
 
-#### 2. 自定义Main方法
+#### 2. Main主线程运行
 ```java
     package com.imooc.item.starter;
     
@@ -68,7 +68,7 @@
     
     }
 ```
-####  3. Dubbo内置Main方法
+####  3. 通过Dubbo内置Main打成jar包运行
 ```xml
 <plugins>
     <plugin>
@@ -112,3 +112,7 @@
     </plugin>
 </plugins>
 ```
+
+### 8.4 zookeeper分布式锁
+![](images/DistributionLock1.PNG)
+![](images/DistributionLock2.PNG)

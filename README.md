@@ -11,4 +11,4 @@
 5 | zk-cluster | [5 选举模式和ZooKeeper的集群安装](zk-cluster/README.md)
 6 | zk-client | [6 使用ZooKeeper原生Java API进行客户端开发](zk-client/src/main/java/com/dhm/client)
 7 | zk-curator | [7 Apache Curator客户端的使用](zk-curator/README.md)
-8 | zk-dubbo | [8 Dubbo入门到重构服务](imooc-dubbo/README.md)
+8 | zk-dubbo | [8 Dubbo入门到重构服务、分布式锁](imooc-dubbo/README.md)
